@@ -5,7 +5,11 @@
 
 	<groupId>com.example</groupId>
 	<artifactId>devops</artifactId>
+<<<<<<< HEAD
 	<version>1.1.5-SNAPSHOT</version>
+=======
+	<version>1.1.1-SNAPSHOT</version>
+>>>>>>> feature/init-page
 	<packaging>war</packaging>
 
 	<name>devops</name>
