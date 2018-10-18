@@ -60,5 +60,10 @@ pipeline {
         sh 'curl -u jenkins:jenkins -T target/**.war http://localhost:8080/manager/text/deploy?path=/devops&update=true'
       }
     }
+    stage('E-mail Notification') {
+      steps {
+        emailext(to: 'buivankien5@gmail.com', subject: 'Deploy Project', attachLog: true, attachmentsPattern: 'File.txt', compressLog: true, from: 'buvankien5@gmail.com', body: 'Deploy Projects')
+      }
+    }
   }
 }
