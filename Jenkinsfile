@@ -9,7 +9,7 @@ pipeline {
     stage('Build') {
       steps {
         isUnix()
-        sh '''sh "\'${mvnHome}/bin/mvn\' -Dmaven.test.failure.ignore clean package"
+        sh '''"\'${mvnHome}/bin/mvn\' -Dmaven.test.failure.ignore clean package"
 '''
       }
     }
@@ -24,16 +24,17 @@ pipeline {
         stage('Integration Test') {
           steps {
             isUnix()
-            sh 'sh "\'${mvnHome}/bin/mvn\' -Dmaven.test.failure.ignore clean verify"'
+            sh '"\'${mvnHome}/bin/mvn\' -Dmaven.test.failure.ignore clean verify"'
           }
         }
       }
     }
     stage('Artifacts') {
       parallel {
-        stage('') {
+        stage('Artifacts') {
           steps {
-            echo 'Test'
+            isUnix()
+            sh '"\'${mvnHome}/bin/mvn\' -Dmaven.test.failure.ignore clean deploy"'
           }
         }
         stage('Release') {
