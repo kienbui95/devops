@@ -18,7 +18,7 @@ pipeline {
       parallel {
         stage('Unit Test') {
           steps {
-            junit 'target/surefire-reports/TEST-*.xml'
+            junit '**/target/surefire-reports/TEST-*.xml'
             archiveArtifacts 'target/*.jar'
           }
         }
