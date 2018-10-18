@@ -35,7 +35,7 @@ pipeline {
         stage('Artifacts') {
           steps {
             isUnix()
-            sh '"\'${mvnHome}/bin/mvn\' -Dmaven.test.failure.ignore clean deploy"'
+            sh '/root/devops/apache-maven-3.5.4/bin/mvn -Dmaven.test.failure.ignore clean deploy'
           }
         }
         stage('Release') {
@@ -47,7 +47,7 @@ pipeline {
     }
     stage('Deploy') {
       steps {
-        echo 'deploy'
+        sh 'curl -u jenkins:jenkins -T target/**.war http://localhost:8080/manager/text/deploy?path=/devops&update=true'
       }
     }
   }
