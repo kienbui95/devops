@@ -4,6 +4,7 @@ pipeline {
     stage('Prepare') {
       steps {
         git(url: 'git@github.com:kienbui95/devops.git', branch: 'develop')
+        tool 'maven'
       }
     }
     stage('Build') {
