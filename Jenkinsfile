@@ -28,6 +28,11 @@ pipeline {
             sh '/root/devops/apache-maven-3.5.4/bin/mvn -Dmaven.test.failure.ignore clean verify'
           }
         }
+        stage('Sona') {
+          steps {
+            sh '/root/devops/apache-maven-3.5.4/bin/mvn sonar:sonar'
+          }
+        }
       }
     }
     stage('Artifacts') {
@@ -40,9 +45,14 @@ pipeline {
         }
         stage('Release') {
           steps {
-            echo 'test'
+            sh '/root/devops/apache-maven-3.5.4/bin/mvn release:clean release:prepare release:perform'
           }
         }
+      }
+    }
+    stage('HA') {
+      steps {
+        sh 'curl -u jenkins:jenkins -T target/**.war http://localhost:9080/manager/text/deploy?path=/devops&update=true'
       }
     }
     stage('Deploy') {
