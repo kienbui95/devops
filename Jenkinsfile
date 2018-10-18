@@ -25,7 +25,7 @@ pipeline {
         stage('Integration Test') {
           steps {
             isUnix()
-            sh '/root/devops/apache-maven-3.5.4/bin/mvn/bin/mvn -Dmaven.test.failure.ignore clean verify'
+            sh '/root/devops/apache-maven-3.5.4/bin/mvn -Dmaven.test.failure.ignore clean verify'
           }
         }
       }
