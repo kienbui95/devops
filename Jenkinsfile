@@ -19,7 +19,7 @@ pipeline {
         stage('Unit Test') {
           steps {
             junit '**/target/surefire-reports/TEST-*.xml'
-            archiveArtifacts 'target/*.jar'
+            archiveArtifacts(artifacts: 'target/*.jar', allowEmptyArchive: true)
           }
         }
         stage('Integration Test') {
